@@ -1,0 +1,7 @@
+E:\tcpip연습\prac_tcpip\prac_tcpip\bin\Debug\prac_tcpip.exe.config
+E:\tcpip연습\prac_tcpip\prac_tcpip\bin\Debug\prac_tcpip.exe
+E:\tcpip연습\prac_tcpip\prac_tcpip\bin\Debug\prac_tcpip.pdb
+E:\tcpip연습\prac_tcpip\prac_tcpip\obj\Debug\prac_tcpip.csproj.AssemblyReference.cache
+E:\tcpip연습\prac_tcpip\prac_tcpip\obj\Debug\prac_tcpip.csproj.CoreCompileInputs.cache
+E:\tcpip연습\prac_tcpip\prac_tcpip\obj\Debug\prac_tcpip.exe
+E:\tcpip연습\prac_tcpip\prac_tcpip\obj\Debug\prac_tcpip.pdb

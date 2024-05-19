@@ -1,0 +1,7 @@
+E:\MCU_server\prac_tcpip\obj\Debug\prac_tcpip.exe
+E:\MCU_server\prac_tcpip\obj\Debug\prac_tcpip.pdb
+E:\MCU_server\prac_tcpip\bin\Debug\prac_tcpip.exe.config
+E:\MCU_server\prac_tcpip\bin\Debug\prac_tcpip.exe
+E:\MCU_server\prac_tcpip\bin\Debug\prac_tcpip.pdb
+E:\MCU_server\prac_tcpip\obj\Debug\MCU_server.csproj.AssemblyReference.cache
+E:\MCU_server\prac_tcpip\obj\Debug\MCU_server.csproj.CoreCompileInputs.cache
