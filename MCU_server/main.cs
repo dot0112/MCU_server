@@ -19,8 +19,8 @@ namespace MCU_server
 		{
 			try
 			{
-				IPAddress localAddr = IPAddress.Parse("127.0.0.1");
-				int port = 12345;
+				IPAddress localAddr = IPAddress.Parse(getIPv4.GetIPv4());
+				int port = 80;
 				server = new TcpListener(localAddr, port);
 
 				server.Start();

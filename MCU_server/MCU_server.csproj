@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2715E79-AAB7-4E31-833E-1BDCFB6AE163}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>prac_tcpip</RootNamespace>
-    <AssemblyName>prac_tcpip</AssemblyName>
+    <RootNamespace>MCU_server</RootNamespace>
+    <AssemblyName>MCU_server</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientHandler.cs" />
+    <Compile Include="getIPv4.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
