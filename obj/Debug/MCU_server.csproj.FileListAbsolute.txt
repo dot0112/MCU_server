@@ -12,3 +12,12 @@ E:\MCU_server\MCU_server\bin\Debug\MCU_server.exe
 E:\MCU_server\MCU_server\bin\Debug\MCU_server.pdb
 E:\MCU_server\MCU_server\obj\Debug\MCU_server.exe
 E:\MCU_server\MCU_server\obj\Debug\MCU_server.pdb
+E:\MCU_server\bin\Debug\MCU_server.exe.config
+E:\MCU_server\bin\Debug\MCU_server.exe
+E:\MCU_server\bin\Debug\MCU_server.pdb
+E:\MCU_server\obj\Debug\MCU_server.csproj.AssemblyReference.cache
+E:\MCU_server\obj\Debug\MCU_server.csproj.CoreCompileInputs.cache
+E:\MCU_server\obj\Debug\MCU_server.exe
+E:\MCU_server\obj\Debug\MCU_server.pdb
+E:\MCU_server\obj\Debug\MCU_server.Properties.Resources.resources
+E:\MCU_server\obj\Debug\MCU_server.csproj.GenerateResource.cache
