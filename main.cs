@@ -11,7 +11,7 @@ namespace MCU_server
 	{
 		private static TcpListener server = null;
 		private static int clientCounter = 0; // 클라이언트 ID를 위한 카운터
-		public static int arduino = -1, client = -1;
+		public static TcpClient arduino = null, client = null;
 		public static object syncLock = new object(); // 동기화 객체
 
 		private static List<ClientHandler> clientHandlers = new List<ClientHandler>(); // 클라이언트 핸들러 리스트
@@ -60,23 +60,6 @@ namespace MCU_server
 			lock (syncLock)
 			{
 				clientHandlers.RemoveAll(ch => ch.ClientId == clientId);
-			}
-		}
-
-		public static void SendCommandToClient(int clientId, string message)
-		{
-			lock (syncLock)
-			{
-				ClientHandler handler = clientHandlers.Find(ch => ch.ClientId == clientId);
-				if (handler != null)
-				{
-					handler.SendMessage(message);
-				}
-				else
-				{
-					Console.WriteLine($"클라이언트 [{clientId}]를 찾을 수 없습니다.");
-					return;
-				}
 			}
 		}
 	}

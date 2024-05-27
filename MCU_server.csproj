@@ -60,8 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientArduino.cs" />
     <Compile Include="ClientHandler.cs" />
-    <Compile Include="clientCamera.cs" />
+    <Compile Include="ClientCamera.cs" />
+    <Compile Include="ClientNormal.cs" />
     <Compile Include="getIPv4.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
