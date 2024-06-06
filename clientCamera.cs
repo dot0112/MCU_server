@@ -9,11 +9,11 @@ using System.Drawing;
 
 namespace MCU_server
 {
-	internal class clientCamera
+	internal class ClientCamera
 	{
-		MemoryStream imageData = null;
+		public static MemoryStream imageData = new MemoryStream();
 
-		public void socketCamera_T(TcpClient c)
+		public void socketCamera(TcpClient c)
 		{
 			try
 			{
@@ -39,9 +39,8 @@ namespace MCU_server
 							Array.Copy(data, start, frameData, 0, frameData.Length);
 							using (MemoryStream mest = new MemoryStream(frameData))
 							{
-								File.WriteAllBytes("received_frame.jpg", mest.ToArray());
-								imageData = mest;
-
+								mest.Seek(0, SeekOrigin.Begin);
+								mest.CopyTo(imageData);
 							}
 							ms = new MemoryStream();
 							ms.Write(data, end, data.Length - end);
@@ -53,6 +52,10 @@ namespace MCU_server
 			catch (Exception e)
 			{
 				Console.WriteLine(e.ToString());
+			}
+			finally
+			{
+				c.Close();
 			}
 		}
 	}
