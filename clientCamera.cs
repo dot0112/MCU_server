@@ -11,7 +11,7 @@ namespace MCU_server
 {
 	internal class ClientCamera
 	{
-		public static MemoryStream imageData = null;
+		public static MemoryStream imageData = new MemoryStream();
 
 		public void socketCamera(TcpClient c)
 		{
@@ -39,8 +39,8 @@ namespace MCU_server
 							Array.Copy(data, start, frameData, 0, frameData.Length);
 							using (MemoryStream mest = new MemoryStream(frameData))
 							{
-								imageData = mest;
-
+								mest.Seek(0, SeekOrigin.Begin);
+								mest.CopyTo(imageData);
 							}
 							ms = new MemoryStream();
 							ms.Write(data, end, data.Length - end);

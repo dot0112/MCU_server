@@ -50,8 +50,8 @@ namespace MCU_server
 							// 이미지 요청
 							if (ClientCamera.imageData != null)
 							{
-								ClientHandler.SendMessage(client, "t");
-								ms = ClientCamera.imageData;
+								ClientCamera.imageData.Seek(0, SeekOrigin.Begin);
+								ClientCamera.imageData.CopyTo(ms);
 								ms.Position = 0; // 스트림 위치를 시작으로 되돌림
 
 								byte[] dataBuffer = new byte[1024];
@@ -60,12 +60,9 @@ namespace MCU_server
 								{
 									stream.Write(dataBuffer, 0, read);
 								}
-							} else
-							{
-								ClientHandler.SendMessage(client, "f");
+								ms = new MemoryStream();
 							}
 						}
-						ClientHandler.SendMessage(client, " ");
 					}
 				}
 
@@ -76,7 +73,7 @@ namespace MCU_server
 			}
 			finally
 			{
-				lock(main.syncLock)
+				lock (main.syncLock)
 				{
 					main.client.Close();
 					main.client = null;
