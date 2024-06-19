@@ -11,7 +11,7 @@ namespace MCU_server
 	{
 		private static TcpListener server = null;
 		private static int clientCounter = 0; // 클라이언트 ID를 위한 카운터
-		public static TcpClient arduino = null, client = null;
+		public static ClientHandler arduino = null, client = null, camera = null;
 		public static object syncLock = new object(); // 동기화 객체
 
 		private static List<ClientHandler> clientHandlers = new List<ClientHandler>(); // 클라이언트 핸들러 리스트
@@ -19,7 +19,7 @@ namespace MCU_server
 		{
 			try
 			{
-				IPAddress localAddr = IPAddress.Parse("192.168.0.19");
+				IPAddress localAddr = IPAddress.Parse("192.168.50.126");
 				int port = 7000;
 				server = new TcpListener(localAddr, port);
 

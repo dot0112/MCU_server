@@ -11,8 +11,8 @@ namespace MCU_server
 {
 	internal class ClientCamera
 	{
-		public static MemoryStream imageData = new MemoryStream();
-
+		public static MemoryStream imageData;
+		public static object syncLock = new object();
 		public void socketCamera(TcpClient c)
 		{
 			try
@@ -39,8 +39,12 @@ namespace MCU_server
 							Array.Copy(data, start, frameData, 0, frameData.Length);
 							using (MemoryStream mest = new MemoryStream(frameData))
 							{
-								mest.Seek(0, SeekOrigin.Begin);
-								mest.CopyTo(imageData);
+								lock (syncLock)
+								{
+									imageData = new MemoryStream();
+									mest.Seek(0, SeekOrigin.Begin);
+									mest.CopyTo(imageData);
+								}
 							}
 							ms = new MemoryStream();
 							ms.Write(data, end, data.Length - end);

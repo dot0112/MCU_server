@@ -29,38 +29,45 @@ namespace MCU_server
 						{
 							// 전진
 							ClientHandler.SendMessage(main.arduino, "w");
+							Console.WriteLine("Normal: w");
 						}
 						if (data == "s")
 						{
 							// 후진
 							ClientHandler.SendMessage(main.arduino, "s");
+							Console.WriteLine("Normal: s");
 						}
 						if (data == "a")
 						{
 							// 좌회전
 							ClientHandler.SendMessage(main.arduino, "a");
+							Console.WriteLine("Normal: a");
 						}
 						if (data == "d")
 						{
 							// 우회전
 							ClientHandler.SendMessage(main.arduino, "d");
+							Console.WriteLine("Normal: d");
 						}
 						if (data == "p")
 						{
 							// 이미지 요청
-							if (ClientCamera.imageData != null)
+							lock (ClientCamera.syncLock)
 							{
-								ClientCamera.imageData.Seek(0, SeekOrigin.Begin);
-								ClientCamera.imageData.CopyTo(ms);
-								ms.Position = 0; // 스트림 위치를 시작으로 되돌림
-
-								byte[] dataBuffer = new byte[1024];
-								int read;
-								while ((read = ms.Read(dataBuffer, 0, dataBuffer.Length)) > 0)
+								if (ClientCamera.imageData != null)
 								{
-									stream.Write(dataBuffer, 0, read);
+									ClientCamera.imageData.Seek(0, SeekOrigin.Begin);
+									ClientCamera.imageData.CopyTo(ms);
+									ms.Position = 0; // 스트림 위치를 시작으로 되돌림
+
+									byte[] dataBuffer = new byte[1024];
+									int read;
+									while ((read = ms.Read(dataBuffer, 0, dataBuffer.Length)) > 0)
+									{
+										stream.Write(dataBuffer, 0, read);
+									}
+									ms = new MemoryStream();
 								}
-								ms = new MemoryStream();
 							}
 						}
 					}

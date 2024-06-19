@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -37,42 +38,43 @@ namespace MCU_server
 					{
 						lock (main.syncLock)
 						{
-							if (main.arduino == null)
+							if (main.arduino != null)
 							{
-								main.arduino = client;
-								SendMessage(client, "Arduino");
-								mode = 0;
+								main.arduino.Close();
 							}
-							else
-							{
-								SendMessage(client, "fail");
-								continue;
-							}
+							main.arduino = this;
+							SendMessage(this, "Arduino");
+							mode = 0;
 						}
 					}
 					if (data == "client")
 					{
 						lock (main.syncLock)
 						{
-							if (main.client == null)
+							if (main.client != null)
 							{
-								main.client = client;
-								SendMessage(client, "Client");
-								mode = 1;
+								main.client.Close();
 							}
-							else
-							{
-								SendMessage(client, "fail");
-								continue;
-							}
+							main.client = this;
+							SendMessage(this, "Client");
+							mode = 1;
 						}
 					}
 					if (data == "camera")
 					{
-							SendMessage(client, "camera");
+						lock (main.syncLock)
+						{
+							if (main.camera != null)
+							{
+								main.camera.Close();
+							}
+							main.camera = this;
+							SendMessage(this, "camera");
 							mode = 2;
-							byte[] read = new byte[1];
-							stream.Read(read, 0, 1);
+						}
+						// camera 접속 전 마지막 확인 문자 받음
+						byte[] read = new byte[1];
+						stream.Read(read, 0, 1);
 					}
 					break;
 				}
@@ -99,17 +101,24 @@ namespace MCU_server
 			}
 			finally
 			{
-				Console.WriteLine($"클라이언트 [{clientId}] : {(mode == 0 ? "Arduino" : (mode == 1 ? "Normal" : "Camera"))}");
+				if(stream!=null) stream.Close();
+				if(client!=null) client.Close();
 			}
 		}
 
-		public static void SendMessage(TcpClient client, string message)
+		public static void SendMessage(ClientHandler client, string message)
 		{
-			if (client.Connected)
+			if (client.client != null)
 			{
 				byte[] msg = Encoding.ASCII.GetBytes(message);
-				client.GetStream().Write(msg, 0, msg.Length);
+				client.client.GetStream().Write(msg, 0, msg.Length);
 			}
+		}
+
+		public void Close()
+		{
+			this.client.Close();
+			this.stream.Close();
 		}
 	}
 }
