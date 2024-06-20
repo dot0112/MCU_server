@@ -21,13 +21,13 @@ namespace MCU_server
 				int bytesRead;
 				while (true)
 				{
-					while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+					/*while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
 					{
 						DateTime startTime = DateTime.Now; // 선언 위치 확인 필요
 						while ((DateTime.Now - startTime).TotalSeconds < 3) { }
 						// 재요청 전달
 						ClientHandler.SendMessage(main.arduino, "r");
-					}
+					}*/
 				}
 			} catch (Exception ex)
 			{

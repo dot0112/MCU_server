@@ -105,6 +105,7 @@ static esp_err_t stream(WiFiClient client) {
             (uint32_t)frame_time, 1000.0 / (uint32_t)frame_time,
             avg_frame_time, 1000.0 / avg_frame_time);
     }
+
   return res;
 }
 
@@ -149,7 +150,7 @@ void recvData(void* pvParameters) {
     client.write("arduino");
     while(true){
       String s = client.readString();
-      if(s.equals("arduino")) {
+      if(s.equals("Arduino")) {
         arduinoMode = true;
         client.write("t");
         Serial.println("arduino mode setup...");
@@ -158,11 +159,12 @@ void recvData(void* pvParameters) {
     }
   }
   while(true){
-      String s= client.readString();
-      Serial.println("control");
-      Serial.println(s);
+    if(client.available()){
+      char m = client.read();
+      Serial.println(String("move:") + m);
+      }
+    }
   }
-}
 
 void setup() {
   Serial.begin(115200);
@@ -193,11 +195,11 @@ void setup() {
   config.pixel_format = PIXFORMAT_JPEG;
 
   if (psramFound()) {
-    config.frame_size = FRAMESIZE_VGA;
+    config.frame_size = FRAMESIZE_CIF;
     config.jpeg_quality = 10;
     config.fb_count = 2;
   } else {
-    config.frame_size = FRAMESIZE_VGA;
+    config.frame_size = FRAMESIZE_CIF;
     config.jpeg_quality = 12;
     config.fb_count = 1;
   }
