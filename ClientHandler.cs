@@ -38,11 +38,10 @@ namespace MCU_server
 					{
 						lock (main.syncLock)
 						{
-							if (main.arduino != null)
-							{
-								main.arduino.Close();
-							}
+							ClientHandler tmp = null;
+							if (main.arduino != null) tmp= main.arduino;
 							main.arduino = this;
+							tmp?.Close();
 							SendMessage(this, "Arduino");
 							mode = 0;
 						}
@@ -51,11 +50,10 @@ namespace MCU_server
 					{
 						lock (main.syncLock)
 						{
-							if (main.client != null)
-							{
-								main.client.Close();
-							}
+							ClientHandler tmp = null;
+							if (main.client != null) tmp = main.client;
 							main.client = this;
+							tmp?.Close();
 							SendMessage(this, "Client");
 							mode = 1;
 						}
@@ -64,11 +62,10 @@ namespace MCU_server
 					{
 						lock (main.syncLock)
 						{
-							if (main.camera != null)
-							{
-								main.camera.Close();
-							}
+							ClientHandler tmp = null;
+							if (main.camera != null) tmp = main.camera;
 							main.camera = this;
+							tmp?.Close();
 							SendMessage(this, "camera");
 							mode = 2;
 						}
