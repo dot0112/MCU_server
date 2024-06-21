@@ -30,7 +30,7 @@ espSerial.listen();
       buffer += c;
     }
   }
-  if(  value.length()==8 || value.length() != 0 && millis()-__time > 500){
+  if(  value.length()==8 || value.length() != 0 && millis()-__time > 900){
     byte data[8] = {};
     for (int i = 0; i < 8 && i < value.length(); i++) {
      data[i]=(byte)value[i];
@@ -38,7 +38,7 @@ espSerial.listen();
      Serial.print(' ');
     }
     Serial.println();
-    CAN.sendMsgBuf(0x15,0,8,data);
+    CAN.sendMsgBuf(0x01000015,0,8,data);
     value = "";
   }
 }
