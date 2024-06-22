@@ -24,31 +24,31 @@ namespace MCU_server
 					while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
 					{
 						string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-						if (main.arduino != null)
+						if (data != "p")
 						{
-							if (data == "w")
+							Console.WriteLine($"Normal: {data}");
+							if (main.arduino != null)
 							{
-								// 전진
-								ClientHandler.SendMessage(main.arduino, "w");
-								Console.WriteLine("Normal: w");
-							}
-							if (data == "s")
-							{
-								// 후진
-								ClientHandler.SendMessage(main.arduino, "s");
-								Console.WriteLine("Normal: s");
-							}
-							if (data == "a")
-							{
-								// 좌회전
-								ClientHandler.SendMessage(main.arduino, "a");
-								Console.WriteLine("Normal: a");
-							}
-							if (data == "d")
-							{
-								// 우회전
-								ClientHandler.SendMessage(main.arduino, "d");
-								Console.WriteLine("Normal: d");
+								if (data == "w")
+								{
+									// 전진
+									ClientHandler.SendMessage(main.arduino, "w");
+								}
+								if (data == "s")
+								{
+									// 후진
+									ClientHandler.SendMessage(main.arduino, "s");
+								}
+								if (data == "a")
+								{
+									// 좌회전
+									ClientHandler.SendMessage(main.arduino, "a");
+								}
+								if (data == "d")
+								{
+									// 우회전
+									ClientHandler.SendMessage(main.arduino, "d");
+								}
 							}
 						}
 						if (data == "p")
