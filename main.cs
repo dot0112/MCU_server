@@ -39,13 +39,13 @@ namespace MCU_server
 						port = int.Parse(Console.ReadLine());
 					}
 				}
-				Console.WriteLine($"서버가 {localAddr}:{port}에서 대기 중입니다...");
+				Console.WriteLine($"Server is listening on {localAddr}:{port}...");
 
 				while (true)
 				{
 					TcpClient client = server.AcceptTcpClient();
 					int clientId = ++clientCounter; // 클라이언트 ID 할당
-					Console.WriteLine($"클라이언트 [{clientId}]가 연결되었습니다!");
+					Console.WriteLine($"Client [{clientId}] connected!");
 
 					// 클라이언트 처리를 위한 ClientHandler 인스턴스 생성
 					ClientHandler clientHandler = new ClientHandler(client, clientId);
@@ -62,7 +62,7 @@ namespace MCU_server
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("예외: " + e.Message);
+				Console.WriteLine("Exception: " + e.Message);
 			}
 			finally
 			{

@@ -33,7 +33,7 @@ namespace MCU_server
 				while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
 				{
 					string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-					Console.WriteLine($"클라이언트 [{clientId}] : {data}");
+					Console.WriteLine($"Client [{clientId}] : {data}");
 					if (data == "arduino")
 					{
 						lock (main.syncLock)
@@ -94,7 +94,7 @@ namespace MCU_server
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine($"클라이언트 [{clientId}] 처리 중 예외 발생: {e.Message}");
+				Console.WriteLine($"Exception occurred while processing client [{clientId}]: {e.Message}");
 			}
 			finally
 			{
