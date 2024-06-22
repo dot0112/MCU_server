@@ -21,9 +21,24 @@ namespace MCU_server
 			{
 				IPAddress localAddr = IPAddress.Parse("192.168.50.126");
 				int port = 7000;
-				server = new TcpListener(localAddr, port);
 
-				server.Start();
+				while (true)
+				{
+					try
+					{
+						server = new TcpListener(localAddr, port);
+						server.Start();
+						break;
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e.ToString());
+						Console.Write("IPAddress: ");
+						localAddr = IPAddress.Parse(Console.ReadLine());
+						Console.Write("port: ");
+						port = int.Parse(Console.ReadLine());
+					}
+				}
 				Console.WriteLine($"서버가 {localAddr}:{port}에서 대기 중입니다...");
 
 				while (true)

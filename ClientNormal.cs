@@ -68,6 +68,10 @@ namespace MCU_server
 									}
 									ms = new MemoryStream();
 								}
+								else
+								{
+									StanbyScreen.Send(stream);
+								}
 							}
 						}
 					}
