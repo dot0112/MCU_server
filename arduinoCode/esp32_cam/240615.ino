@@ -11,12 +11,12 @@
 #include "camera_pins.h"
 
 // Wi-Fi 설정
-const char* ssid = "LAB821(AI&ASIC)";
-const char* password = "deucomputer821";
+const char* ssid = "";
+const char* password = "";
 
 // 서버 설정
-const char* serverIP = "192.168.50.126";
-const int serverPort = 7000;
+const char* serverIP = "***.***.***.***";
+const int serverPort = 0;
 
 bool cameraMode = false, arduinoMode = false;
 int wifiConnectCount = 0;

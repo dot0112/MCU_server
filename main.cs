@@ -19,8 +19,8 @@ namespace MCU_server
 		{
 			try
 			{
-				IPAddress localAddr = IPAddress.Parse("172.31.0.161");
-				int port = 80;
+				IPAddress localAddr = IPAddress.Parse("***.***.***.***");
+				int port;
 
 				while (true)
 				{
